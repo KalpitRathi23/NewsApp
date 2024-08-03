@@ -177,6 +177,7 @@ class BlogTile extends StatelessWidget {
               newsDate: date,
               newsDesc: desc,
               newsSource: author,
+              newsUrl: url,
             ),
           ),
         );

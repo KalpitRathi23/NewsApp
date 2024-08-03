@@ -3,12 +3,14 @@ import 'dart:convert';
 import '../models/article_model.dart';
 import 'package:http/http.dart' as http;
 
+const String apiKey = 'bf96542d1903409185996974ef854709';
+
 class News {
   List<ArticleModel> news = [];
 
   Future<void> getNews() async {
     var url = Uri.parse(
-        'https://newsapi.org/v2/top-headlines?country=us&apiKey=bf96542d1903409185996974ef854709');
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=$apiKey');
 
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
@@ -40,7 +42,7 @@ class CategoryNewsClass {
 
   Future<void> getNews(String category) async {
     var url = Uri.parse(
-        'https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=bf96542d1903409185996974ef854709');
+        'https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=$apiKey');
 
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
