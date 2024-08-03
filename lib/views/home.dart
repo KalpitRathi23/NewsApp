@@ -6,6 +6,7 @@ import 'package:newshub/helper/news.dart';
 import 'package:newshub/models/article_model.dart';
 import 'package:newshub/views/category_news.dart';
 import 'package:newshub/views/news_detail_screen.dart';
+import 'package:newshub/views/search_screen.dart';
 
 import '../models/category_model.dart';
 
@@ -56,6 +57,19 @@ class _HomeState extends State<Home> {
           ],
         ),
         elevation: 2,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.black),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchScreen(articles: articles),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: _loading
           ? const Center(
