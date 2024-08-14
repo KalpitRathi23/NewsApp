@@ -136,13 +136,31 @@ class CategoryTile extends StatelessWidget {
         child: Stack(
           children: [
             ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  fit: BoxFit.cover,
-                )),
+              borderRadius: BorderRadius.circular(10),
+              child: imageUrl.isNotEmpty
+                  ? CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      color: Colors.grey,
+                      child: const Center(
+                        child: Text(
+                          'Image not available',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+            ),
             Container(
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width * 0.25,
@@ -209,7 +227,24 @@ class BlogTile extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
-                child: Image.network(imageUrl),
+                child: imageUrl.isNotEmpty
+                    ? Image.network(imageUrl)
+                    : Container(
+                        color: Colors.grey[200],
+                        height: 200,
+                        width: double.infinity,
+                        child: const Center(
+                          child: Text(
+                            'Image not available',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
               ),
               const SizedBox(height: 8),
               Text(

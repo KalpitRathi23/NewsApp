@@ -52,8 +52,11 @@ class _SearchScreenState extends State<SearchScreen> {
       body: filteredArticles.isEmpty
           ? const Center(
               child: Text(
-                'No articles found.',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                'No articles found',
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold),
               ),
             )
           : ListView.builder(
@@ -117,7 +120,19 @@ class BlogTile extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
-                child: Image.network(imageUrl),
+                child: imageUrl.isNotEmpty
+                    ? Image.network(imageUrl)
+                    : Container(
+                        color: Colors.grey[200],
+                        height: 200,
+                        width: double.infinity,
+                        child: const Center(
+                          child: Text(
+                            'Image not available',
+                            style: TextStyle(color: Colors.grey, fontSize: 16),
+                          ),
+                        ),
+                      ),
               ),
               const SizedBox(height: 8),
               Text(

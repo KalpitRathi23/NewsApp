@@ -36,46 +36,44 @@ class _CategoryNewsState extends State<CategoryNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "News",
-                style: TextStyle(
-                    color: Colors.black87, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                "Hub",
-                style:
-                    TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
-              )
-            ],
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 2,
+      appBar: AppBar(
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "News",
+              style:
+                  TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
+            ),
+            Text(
+              "Hub",
+              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+            )
+          ],
         ),
-        body: _loading
-            ? const Center(
-                child: SpinKitCircle(
-                  size: 50,
-                  color: Colors.blue,
-                ),
-              )
-            : Expanded(
-                child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: articles.length,
-                    itemBuilder: (context, index) {
-                      return BlogTile(
-                        imageUrl: articles[index].urlToImage,
-                        title: articles[index].title,
-                        desc: articles[index].description,
-                        url: articles[index].url,
-                        date: articles[index].publishedAt,
-                        author: articles[index].author,
-                      );
-                    }),
-              ));
+        backgroundColor: Colors.transparent,
+        elevation: 2,
+      ),
+      body: _loading
+          ? const Center(
+              child: SpinKitCircle(
+                size: 50,
+                color: Colors.blue,
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: articles.length,
+              itemBuilder: (context, index) {
+                return BlogTile(
+                  imageUrl: articles[index].urlToImage,
+                  title: articles[index].title,
+                  desc: articles[index].description,
+                  url: articles[index].url,
+                  date: articles[index].publishedAt,
+                  author: articles[index].author,
+                );
+              }),
+    );
   }
 }
